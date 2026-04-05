@@ -7,7 +7,6 @@ Features:
 * 🥧 Spending Breakdown (Pie Chart)
 * 💸 Transaction Management (Add, Delete, Search, Filter)
 * 🔐 Role-Based Access (Admin & Viewer)
-* 🇮🇳 Indian Currency Support (₹)
 * 🎨 Responsive and modern UI
 
 Tech Stack:
