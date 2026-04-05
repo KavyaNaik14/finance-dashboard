@@ -74,6 +74,8 @@ const Transactions = () => {
   // Role-based modal state
   const [showAddModal, setShowAddModal] = useState(false);
   const { can } = usePermissions();
+  
+const [editData, setEditData] = useState(null);
 
   // Filtered & sorted transactions
   const filteredTransactions = transactions
@@ -121,6 +123,28 @@ const Transactions = () => {
     setTransactions(transactions.filter(t => t.id !== id));
   }
 };
+
+
+const handleAddTransaction = (newTransaction) => {
+  setTransactions((prev) => [
+    {
+      id: prev.length + 1,
+      date: new Date().toISOString().split("T")[0],
+      ...newTransaction,
+    },
+    ...prev,
+  ]);
+};
+
+
+const handleUpdateTransaction = (updated) => {
+  setTransactions((prev) =>
+    prev.map((t) =>
+      t.id === updated.id ? updated : t
+    )
+  );
+};
+
 
   return (
     <div className="space-y-6">
@@ -257,7 +281,10 @@ const Transactions = () => {
                             permission="edit" 
                             className="p-2"
                             icon={Edit3}
-                            onClick={() => console.log('Edit:', transaction.id)}
+                            onClick={() => {
+  setEditData(transaction);
+  setShowAddModal(true);
+}}
                           />
                           <ProtectedButton 
                             permission="delete"
@@ -285,7 +312,15 @@ const Transactions = () => {
       </div>
 
       {/* Modal - Admin Only */}
-      <AddTransactionModal isOpen={showAddModal} onClose={() => setShowAddModal(false)} />
+  <AddTransactionModal 
+  isOpen={showAddModal}
+  onClose={() => {
+    setShowAddModal(false);
+    setEditData(null);
+  }}
+  onAdd={editData ? handleUpdateTransaction : handleAddTransaction}
+  editData={editData}
+/>
     </div>
   );
 };

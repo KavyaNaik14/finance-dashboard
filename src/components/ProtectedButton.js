@@ -1,5 +1,5 @@
 import React from 'react';
-import { Plus, Edit3, Trash2 } from 'lucide-react';
+import { Plus} from 'lucide-react';
 import { usePermissions } from '../hooks/usePermissions';
 
 const ProtectedButton = ({ permission, children, icon: Icon, className = '', ...props }) => {

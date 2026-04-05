@@ -6,8 +6,7 @@ import BalanceTrendChart from './BalanceTrendChart';
 import SpendingBreakdown from './SpendingBreakdown';
 // import RecentTransactions from './RecentTransactions';
 import Transactions from './Transactions';
-import RoleSwitcher from './RoleSwitcher';
-import { useRole } from '../contexts/RoleContext';
+
 
 
 const Dashboard = () => {
@@ -52,18 +51,15 @@ const Dashboard = () => {
         />
       </div>
 
-      {/* Charts Row */}
+      
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-12">
         <BalanceTrendChart />
         <SpendingBreakdown />
       </div>
 
-      {/* Recent Transactions
-      <RecentTransactions /> */}
-
-
-        {/* All Transactions */}
+    
         <Transactions />
+         
 
         
 
